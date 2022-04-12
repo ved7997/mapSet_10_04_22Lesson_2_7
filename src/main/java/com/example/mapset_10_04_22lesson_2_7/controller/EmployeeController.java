@@ -20,14 +20,20 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @GetMapping("/add")
-    public String add(@RequestParam String firstName, @RequestParam String lastName){
+    public String add(@RequestParam String firstName,
+                      @RequestParam String lastName,
+                      @RequestParam int salarey,
+                      @RequestParam int departmentId){
         Employee result;
         result = employeeService.add(firstName, lastName);
         return generateMesage(result, "успешно создан");
     }
 
     @GetMapping("/remove")
-    public String remove(@RequestParam String firstName, @RequestParam String lastName) {
+    public String remove(@RequestParam String firstName,
+                         @RequestParam String lastName,
+                         @RequestParam int salarey,
+                         @RequestParam int departmentI) {
         Employee result = employeeService.remove(firstName, lastName);
         return generateMesage(result, "удалён");
     }
