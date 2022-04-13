@@ -31,12 +31,12 @@ public class DepartmentController {
     }
 
     @GetMapping(path = "/all", params = "departmentId")
-    public Collection<Employee> findEmploeByDepartment(@RequestParam("departmentId") int departmentId){
+    public Collection<Employee> findEmploeesByDepartment(@RequestParam("departmentId") int departmentId){
         return departmentService.findEmployeesByDepartment(departmentId);
     }
 
     @GetMapping( "/all")
-    public Map<Integer, List<Employee>> findEmploeByDepartment(){
+    public Map<Integer, List<Employee>> findEmploeesByDepartment(){
         return departmentService.findAllEmployees();
     }
 
