@@ -25,16 +25,16 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Employee employeeWithMaxSslarey(int departmentId) {
+    public Employee employeeWithMaxSalary(int departmentId) {
         return employeeService.getAll().stream()
                 .filter(employee -> employee.getDepartmentId() == departmentId)
-                .max(comparingInt(Employee::getSalary))
+                .max(Comparator.comparingInt(Employee::getSalary))
                 .orElseThrow(() -> new EmployeeNotFoundException("Сотрудник не найден"));
 
     }
 
     @Override
-    public Employee employeeWithMinSslarey(int departmentId) {
+    public Employee employeeWithMinSalary(int departmentId) {
         return employeeService.getAll().stream()
                 .filter(e -> e.getDepartmentId() == departmentId)
                 .min(comparingInt(Employee::getSalary))
@@ -48,7 +48,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Map<Integer, List<Employee>> findAllEmployees() {
+    public Map<Integer, List<Employee>> findAllEmployeesByDepartment() {
         return employeeService.getAll().stream()
                 .collect(Collectors.groupingBy(Employee::getDepartmentId));
     }

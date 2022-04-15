@@ -8,33 +8,11 @@ public class Employee {
     private int salary;
     private int departmentId;
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, int salary, int departmentId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
         this.departmentId = departmentId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects
-                .equals(firstName, employee.firstName) && Objects
-                .equals(lastName, employee.lastName) && Objects
-                .equals(salary, employee.salary) && Objects
-                .equals(departmentId, employee.departmentId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, salary, departmentId);
-    }
-
-    @Override
-    public String toString() {
-        return  firstName + " " + lastName + " " + salary + " " + departmentId;
     }
 
     public void setFirstName(String firstName) {
@@ -68,5 +46,28 @@ public class Employee {
     public int getSalary() {
         return salary;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects
+                .equals(firstName, employee.firstName) && Objects
+                .equals(lastName, employee.lastName) && Objects
+                .equals(salary, employee.salary) && Objects
+                .equals(departmentId, employee.departmentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, salary, departmentId);
+    }
+
+    @Override
+    public String toString() {
+        return  firstName + " " + lastName + " " + salary + " " + departmentId;
+    }
+
 
 }

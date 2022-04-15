@@ -11,55 +11,43 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final Map<String, Employee> employeeBook;
-
-
-
-    public EmployeeServiceImpl() {
-        employeeBook = new HashMap<>();
-    }
+    private final Map<String, Employee> employeeBook = new HashMap<>();
 
     @Override
-    public Employee add(String firstName, String lestName) {
+    public Employee add(String firstName, String lestName, int salary, int departmentId) {
         String key = getKey(firstName, lestName);
-
+        Employee addingEmployee = new Employee(firstName, lestName, salary, departmentId);
         if (employeeBook.containsKey(key)) {
             throw new EmployeeExistsException();
         }
-        Employee newEmployee = new Employee(firstName, lestName);
-        employeeBook.put(key, newEmployee);
-        return newEmployee;
+        employeeBook.put(key, addingEmployee);
+        return  addingEmployee;
     }
 
     @Override
-    public Employee remove(String firstName, String lastName){
+    public Employee remove(String firstName, String lastName) {
         String key = getKey(firstName, lastName);
-        if (employeeBook.remove(key) == null){
+        if (!employeeBook.containsKey(key)) {
             throw new EmployeeNotFoundException();
         }
-        Employee newEmployee = new Employee(firstName, lastName);
-        return newEmployee;
+        return employeeBook.remove((key));
     }
 
     @Override
     public  Employee find(String firstName, String lastName) {
         String key = getKey(firstName, lastName);
-        Employee employee = employeeBook.get(key);
-
-        if (employee == null) {
-            throw new EmployeeNotFoundException();
+       if (!employeeBook.containsKey(key)){
+           throw  new EmployeeNotFoundException();
         }
-
-        return employee;
+       return employeeBook.get(key);
     }
-
 
     @Override
-    public Collection<Employee> getAll(){
-        return  Collections.unmodifiableCollection(employeeBook.values());
+    public List<Employee> getAll(){
+      return new ArrayList<>(employeeBook.values());
     }
 
-    private String getKey(String firstName, String lestName){
+    public String getKey(String firstName, String lestName){
         return firstName + " " + lestName;
     }
 

@@ -2,6 +2,7 @@ package com.example.mapset_10_04_22lesson_2_7.controller;
 
 import com.example.mapset_10_04_22lesson_2_7.service.DepartmentService;
 import com.example.mapset_10_04_22lesson_2_7.service.Employee;
+import com.example.mapset_10_04_22lesson_2_7.service.impl.DepartmentServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,22 +23,22 @@ public class DepartmentController {
 
     @GetMapping("/max-salary")
     public Employee employeeWithMaxSalary(@RequestParam("departmentId") int departmentId){
-        return departmentService.employeeWithMaxSslarey(departmentId);
+        return departmentService.employeeWithMaxSalary(departmentId);
     }
 
     @GetMapping("/min-salary")
     public Employee employeeWithMinSalary(@RequestParam("departmentId") int departmentId){
-        return departmentService.employeeWithMinSslarey(departmentId);
+        return departmentService.employeeWithMinSalary(departmentId);
     }
 
     @GetMapping(path = "/all", params = "departmentId")
-    public Collection<Employee> findEmploeesByDepartment(@RequestParam("departmentId") int departmentId){
+    public Collection<Employee> findEmployeesByDepartment(@RequestParam("departmentId") int departmentId){
         return departmentService.findEmployeesByDepartment(departmentId);
     }
 
     @GetMapping( "/all")
-    public Map<Integer, List<Employee>> findEmploeesByDepartment(){
-        return departmentService.findAllEmployees();
+    public Map<Integer, List<Employee>> findAllEmployeesByDepartment(){
+        return departmentService.findAllEmployeesByDepartment();
     }
 
 
