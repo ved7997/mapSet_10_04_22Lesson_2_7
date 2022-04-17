@@ -3,35 +3,32 @@ package com.example.mapset_10_04_22lesson_2_7.service;
 import java.util.Objects;
 
 public class Employee {
+    private  String firstName;
+    private  String lastName;
+    private int salary;
+    private int departmentId;
 
-    private final String firstName;
-    private final String lastName;
-
-
-
-    public Employee(String firstName, String lastName){
-
+    public Employee(String firstName, String lastName, int salary, int departmentId) {
         this.firstName = firstName;
         this.lastName = lastName;
-
+        this.salary = salary;
+        this.departmentId = departmentId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName);
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    @Override
-    public String toString() {
-        return  firstName + " " + lastName;
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getFirstName() {
@@ -42,6 +39,35 @@ public class Employee {
         return lastName;
     }
 
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects
+                .equals(firstName, employee.firstName) && Objects
+                .equals(lastName, employee.lastName) && Objects
+                .equals(salary, employee.salary) && Objects
+                .equals(departmentId, employee.departmentId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, salary, departmentId);
+    }
+
+    @Override
+    public String toString() {
+        return  firstName + " " + lastName + " " + salary + " " + departmentId;
+    }
 
 
 }
