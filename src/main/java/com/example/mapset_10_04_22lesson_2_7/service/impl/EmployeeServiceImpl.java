@@ -3,8 +3,10 @@ package com.example.mapset_10_04_22lesson_2_7.service.impl;
 
 import com.example.mapset_10_04_22lesson_2_7.exception.EmployeeExistsException;
 import com.example.mapset_10_04_22lesson_2_7.exception.EmployeeNotFoundException;
+import com.example.mapset_10_04_22lesson_2_7.exception.EmployeeisNodAlphaException;
 import com.example.mapset_10_04_22lesson_2_7.service.Employee;
 import com.example.mapset_10_04_22lesson_2_7.service.EmployeeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,7 +18,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Employee add(String firstName, String lestName, int salary, int departmentId) {
         String key = getKey(firstName, lestName);
-        Employee addingEmployee = new Employee(firstName, lestName, salary, departmentId);
+        if (!StringUtils.isAlpha(firstName)||!StringUtils.isAlpha(lestName)){
+            throw new EmployeeisNodAlphaException();
+        }
+        Employee addingEmployee = new Employee(StringUtils.capitalize(firstName) , StringUtils.capitalize(lestName), salary, departmentId);
+
         if (employeeBook.containsKey(key)) {
             throw new EmployeeExistsException();
         }
